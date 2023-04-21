@@ -40,8 +40,6 @@ if (document.cookie) {
 
   cityNow.textContent = obj.currentCity;
   temperatureNow.textContent = obj.temperature;
-
-  console.log(obj);
 }
 
 function getInputValue(e) {
@@ -87,26 +85,28 @@ function render(response) {
 
   cityArr.push(response);
 
+  addCurrentCityToLocalstorage(response);
+
   const cookieValue = `${city}; temperature=${temperature}`;
 
   setCookie('currentCity', cookieValue, {
     secure: true,
-    'max-age': 1000,
+    'max-age': 10,
   });
 }
 
 function AddLocations() {
-  const obj = getCookie();
+  const res = JSON.parse(localStorage.getItem('currentCity'));
+  console.log(res);
 
   const HTMLLocationsElement = `<li class="locations-item">
-  <a href="" class="locations-link">${obj.currentCity}</a>
+  <a href="" class="locations-link">${res.name}</a>
   <button class="delete-city"></button>
   </li>`;
   locationsList.insertAdjacentHTML('beforeend', HTMLLocationsElement);
 
-  locations.add(obj);
+  locations.add(res);
 
-  console.log(locations);
   addLocationsToLocalStorage();
 }
 
@@ -177,6 +177,10 @@ function forecastRender(response) {
 
     forecastList.insertAdjacentHTML('afterbegin', li);
   }
+}
+
+function addCurrentCityToLocalstorage(response) {
+  localStorage.setItem('currentCity', JSON.stringify(response));
 }
 
 function addLocationsToLocalStorage() {

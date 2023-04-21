@@ -571,7 +571,6 @@ if (document.cookie) {
     const obj = getCookie();
     (0, _constantsJs.cityNow).textContent = obj.currentCity;
     (0, _constantsJs.temperatureNow).textContent = obj.temperature;
-    console.log(obj);
 }
 function getInputValue(e) {
     e.preventDefault();
@@ -603,21 +602,22 @@ function render(response) {
     (0, _constantsJs.detailsSunrise).textContent = sunrise;
     (0, _constantsJs.detailsSunset).textContent = sunset;
     cityArr.push(response);
+    addCurrentCityToLocalstorage(response);
     const cookieValue = `${city}; temperature=${temperature}`;
     setCookie("currentCity", cookieValue, {
         secure: true,
-        "max-age": 1000
+        "max-age": 10
     });
 }
 function AddLocations() {
-    const obj = getCookie();
+    const res = JSON.parse(localStorage.getItem("currentCity"));
+    console.log(res);
     const HTMLLocationsElement = `<li class="locations-item">
-  <a href="" class="locations-link">${obj.currentCity}</a>
+  <a href="" class="locations-link">${res.name}</a>
   <button class="delete-city"></button>
   </li>`;
     (0, _constantsJs.locationsList).insertAdjacentHTML("beforeend", HTMLLocationsElement);
-    locations.add(obj);
-    console.log(locations);
+    locations.add(res);
     addLocationsToLocalStorage();
 }
 function renderAllLocations(response) {
@@ -673,6 +673,9 @@ function forecastRender(response) {
     </li>`;
         (0, _constantsJs.forecastList).insertAdjacentHTML("afterbegin", li);
     }
+}
+function addCurrentCityToLocalstorage(response) {
+    localStorage.setItem("currentCity", JSON.stringify(response));
 }
 function addLocationsToLocalStorage() {
     localStorage.setItem("locations", JSON.stringify([
