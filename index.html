@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <title>Wheater</title>
+</head>
+<body>
+  <header></header>
+
+  <main>
+    <div class="container">
+
+      <section class="search">
+        <form action="" class="search-form">
+          <input type="text" class="search-input" placeholder="Enter city name">
+          <button class="search-button">
+            <img src="./img/search.png" alt="search icon" class="search-icon">
+          </button>
+        </form>
+      </section>
+
+      <div class="main-section">
+        <section class="left-section">
+          <div class="tabs">
+            <div class="tabs-now hidden">
+              <div class="info-weather">
+                <p class="temperature">--&#176</p>
+                <img src="./img/cloud.svg" class="info-weather-icon" alt="cloud icon">
+                <div class="info-weather-footer">
+                  <p class="info-current-city">-----</p>
+                  <button class="add-city"><img src="./img/heart.svg" alt="heart icon" class="heart"></button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="tabs-details hidden">
+              <h2 class="details-current-city">---</h2>
+              <ul class="details-wheater-list">
+                <li class="details-list-item temperature-details">Temperature:
+                  <span class="temperature-details-content">--&#176</span>
+                </li>
+                <li class="details-list-item feels-like-details">Feels like:
+                  <span class="feels_like-details-content">--&#176</span>
+                </li>
+                <li class="details-list-item weather-details">Weather:
+                  <span class="weather-details-content">--</span>
+                </li>
+                <li class="details-list-item sunrise-details">Sunrise:
+                  <span class="sunrise-details-content">--</span>
+                </li>
+                <li class="details-list-item sunset-details">Sunset:
+                  <span class="sunset-details-content">--</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tabs-forecast">
+              <h2 class="forecast-current-city">Berlin</h2>
+              <ul class="forecast-list">
+                <li class="forecast-list-item">
+                  <div class="forecast-list-item-box">
+                    <div class="top-info">
+                      <span class="forecast-card date">17 may</span>
+                      <span class="forecast-card time">12:00</span>
+                    </div>
+                    <div class="bottom-info">
+                      <div class="temperature-info">
+                        <span class="forecast-card forecast-temperature">Temperature: 13&#176</span>
+                        <span class="forecast-card forecast-feels-like">Feels like: 10&#176</span>
+                      </div>
+                      <div class="temperature-status">
+                        <span class="forecast-card weather-status">Rain</span>
+                        <img src="./img/rain.svg" class="forecast-icon" alt="cloud icon">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="tabs-menu">
+            <ul class="tabs-list">
+              <li class="tabs-item now">
+                <a href="" class="tabs-item-now tabs">Now</a>
+              </li>
+              <li class="tabs-item details">
+                <a href="" class="tabs-item-details tabs">Details</a>
+              </li>
+              <li class="tabs-item forecast">
+                <a href="" class="tabs-item-forecast tabs">Forecast</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+  
+        <section class="right-section">
+          <div class="info-locations">
+            <p class="add-locations">Add Locations:</p>
+            <ul class="locations-list">
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
