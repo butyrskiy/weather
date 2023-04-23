@@ -563,26 +563,26 @@ const cityArr = [];
 const response = JSON.parse(localStorage.getItem("locations"));
 const locations = new Set(response);
 renderAllLocations(response);
-(0, _constantsJs.searchForm).addEventListener("submit", getInputValue);
-(0, _constantsJs.addCity).addEventListener("click", AddLocations);
-(0, _constantsJs.locationsList).addEventListener("click", deleteAndCurrentCity);
-(0, _constantsJs.tabsList).addEventListener("click", (0, _supportFunctionsJs.switchTabs));
+_constantsJs.searchForm.addEventListener("submit", getInputValue);
+_constantsJs.addCity.addEventListener("click", AddLocations);
+_constantsJs.locationsList.addEventListener("click", deleteAndCurrentCity);
+_constantsJs.tabsList.addEventListener("click", (0, _supportFunctionsJs.switchTabs));
 if (document.cookie) {
     const obj = getCookie();
-    (0, _constantsJs.cityNow).textContent = obj.currentCity;
-    (0, _constantsJs.temperatureNow).textContent = obj.temperature;
+    _constantsJs.cityNow.textContent = obj.currentCity;
+    _constantsJs.temperatureNow.textContent = obj.temperature;
 }
 function getInputValue(e) {
     e.preventDefault();
-    const cityName = (0, _constantsJs.searchInput).value;
+    const cityName = _constantsJs.searchInput.value;
     getData(cityName);
-    (0, _constantsJs.searchInput).value = "";
-    (0, _constantsJs.searchInput).focus();
+    _constantsJs.searchInput.value = "";
+    _constantsJs.searchInput.focus();
 }
 async function getData(cityName) {
     try {
-        const data = await fetch(`${(0, _constantsJs.serverUrl)}?q=${cityName}&appid=${(0, _constantsJs.apiKey)}`);
-        const forecastData = await fetch(`${(0, _constantsJs.forecastUrl)}?q=${cityName}&appid=${(0, _constantsJs.apiKey)}`);
+        const data = await fetch(`${_constantsJs.serverUrl}?q=${cityName}&appid=${_constantsJs.apiKey}`);
+        const forecastData = await fetch(`${_constantsJs.forecastUrl}?q=${cityName}&appid=${_constantsJs.apiKey}`);
         const forecastDataJSON = await forecastData.json();
         const dataToJSON = await data.json();
         render(dataToJSON);
@@ -593,14 +593,14 @@ async function getData(cityName) {
 }
 function render(response) {
     const city = response.name, temperature = (response.main.temp - 273.5).toFixed(1), feelsLike = (response.main.feels_like, 5).toFixed(1), weather = (0, _supportFunctionsJs.getWeather)(response), sunrise = (0, _supportFunctionsJs.getTime)(response.sys.sunrise), sunset = (0, _supportFunctionsJs.getTime)(response.sys.sunset);
-    (0, _constantsJs.cityNow).textContent = city;
-    (0, _constantsJs.temperatureNow).textContent = `${temperature}\u00B0`;
-    (0, _constantsJs.detailsCurrentCity).textContent = city;
-    (0, _constantsJs.detailsTemperature).textContent = `${temperature}\u00B0`;
-    (0, _constantsJs.detailsFeelsLike).textContent = feelsLike;
-    (0, _constantsJs.detailsWeather).textContent = weather;
-    (0, _constantsJs.detailsSunrise).textContent = sunrise;
-    (0, _constantsJs.detailsSunset).textContent = sunset;
+    _constantsJs.cityNow.textContent = city;
+    _constantsJs.temperatureNow.textContent = `${temperature}\u00B0`;
+    _constantsJs.detailsCurrentCity.textContent = city;
+    _constantsJs.detailsTemperature.textContent = `${temperature}\u00B0`;
+    _constantsJs.detailsFeelsLike.textContent = feelsLike;
+    _constantsJs.detailsWeather.textContent = weather;
+    _constantsJs.detailsSunrise.textContent = sunrise;
+    _constantsJs.detailsSunset.textContent = sunset;
     cityArr.push(response);
     addCurrentCityToLocalstorage(response);
     const cookieValue = `${city}; temperature=${temperature}`;
@@ -616,7 +616,7 @@ function AddLocations() {
   <a href="" class="locations-link">${res.name}</a>
   <button class="delete-city"></button>
   </li>`;
-    (0, _constantsJs.locationsList).insertAdjacentHTML("beforeend", HTMLLocationsElement);
+    _constantsJs.locationsList.insertAdjacentHTML("beforeend", HTMLLocationsElement);
     locations.add(res);
     addLocationsToLocalStorage();
 }
@@ -627,7 +627,7 @@ function renderAllLocations(response) {
   <a href="" class="locations-link">${elem.name}</a>
   <button class="delete-city"></button>
   </li>`;
-        (0, _constantsJs.locationsList).insertAdjacentHTML("beforeend", HTMLLocationsElement);
+        _constantsJs.locationsList.insertAdjacentHTML("beforeend", HTMLLocationsElement);
     });
 }
 function deleteAndCurrentCity(e) {
@@ -671,7 +671,7 @@ function forecastRender(response) {
     </div>
   </div>
     </li>`;
-        (0, _constantsJs.forecastList).insertAdjacentHTML("afterbegin", li);
+        _constantsJs.forecastList.insertAdjacentHTML("afterbegin", li);
     }
 }
 function addCurrentCityToLocalstorage(response) {
@@ -773,7 +773,6 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "switchTabs", ()=>switchTabs);
 parcelHelpers.export(exports, "getWeather", ()=>getWeather);
 parcelHelpers.export(exports, "getTime", ()=>getTime);
-parcelHelpers.export(exports, "getForecastData", ()=>getForecastData);
 var _constantsJs = require("./constants.js");
 function switchTabs(e) {
     e.preventDefault();
@@ -805,10 +804,7 @@ function getTime(time) {
     let seconds = "0" + date.getSeconds();
     let formattedTime = `${hours}:${parseInt(minutes)}:${parseInt(seconds)}`;
     return formattedTime;
-} // function getForecastData(response) {
- //   response.forEach(data => {
- //   });
- // }
+}
 
 },{"./constants.js":"gAtXN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["9ZIyz","adjPd"], "adjPd", "parcelRequire8fb7")
 
