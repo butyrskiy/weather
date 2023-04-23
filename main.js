@@ -1,22 +1,4 @@
-import {
-  searchForm,
-  searchInput,
-  temperatureNow,
-  cityNow,
-  addCity,
-  locationsList,
-  tabsList,
-  detailsCurrentCity,
-  detailsTemperature,
-  detailsFeelsLike,
-  detailsWeather,
-  detailsSunrise,
-  detailsSunset,
-  serverUrl,
-  apiKey,
-  forecastUrl,
-  forecastList,
-} from './modules/constants.js';
+import * as constants from './modules/constants.js';
 
 import {
   switchTabs,
@@ -30,32 +12,34 @@ const response = JSON.parse(localStorage.getItem('locations'));
 const locations = new Set(response);
 renderAllLocations(response);
 
-searchForm.addEventListener('submit', getInputValue);
-addCity.addEventListener('click', AddLocations);
-locationsList.addEventListener('click', deleteAndCurrentCity);
-tabsList.addEventListener('click', switchTabs);
+constants.searchForm.addEventListener('submit', getInputValue);
+constants.addCity.addEventListener('click', AddLocations);
+constants.locationsList.addEventListener('click', deleteAndCurrentCity);
+constants.tabsList.addEventListener('click', switchTabs);
 
 if (document.cookie) {
   const obj = getCookie();
 
-  cityNow.textContent = obj.currentCity;
-  temperatureNow.textContent = obj.temperature;
+  constants.cityNow.textContent = obj.currentCity;
+  constants.temperatureNow.textContent = obj.temperature;
 }
 
 function getInputValue(e) {
   e.preventDefault();
-  const cityName = searchInput.value;
+  const cityName = constants.searchInput.value;
 
   getData(cityName);
-  searchInput.value = '';
-  searchInput.focus();
+  constants.searchInput.value = '';
+  constants.searchInput.focus();
 }
 
 async function getData(cityName) {
   try {
-    const data = await fetch(`${serverUrl}?q=${cityName}&appid=${apiKey}`);
+    const data = await fetch(
+      `${constants.serverUrl}?q=${cityName}&appid=${constants.apiKey}`
+    );
     const forecastData = await fetch(
-      `${forecastUrl}?q=${cityName}&appid=${apiKey}`
+      `${constants.forecastUrl}?q=${cityName}&appid=${constants.apiKey}`
     );
     const forecastDataJSON = await forecastData.json();
     const dataToJSON = await data.json();
@@ -74,14 +58,14 @@ function render(response) {
     sunrise = getTime(response.sys.sunrise),
     sunset = getTime(response.sys.sunset);
 
-  cityNow.textContent = city;
-  temperatureNow.textContent = `${temperature}\u00B0`;
-  detailsCurrentCity.textContent = city;
-  detailsTemperature.textContent = `${temperature}\u00B0`;
-  detailsFeelsLike.textContent = feelsLike;
-  detailsWeather.textContent = weather;
-  detailsSunrise.textContent = sunrise;
-  detailsSunset.textContent = sunset;
+  constants.cityNow.textContent = city;
+  constants.temperatureNow.textContent = `${temperature}\u00B0`;
+  constants.detailsCurrentCity.textContent = city;
+  constants.detailsTemperature.textContent = `${temperature}\u00B0`;
+  constants.detailsFeelsLike.textContent = feelsLike;
+  constants.detailsWeather.textContent = weather;
+  constants.detailsSunrise.textContent = sunrise;
+  constants.detailsSunset.textContent = sunset;
 
   cityArr.push(response);
 
@@ -103,7 +87,7 @@ function AddLocations() {
   <a href="" class="locations-link">${res.name}</a>
   <button class="delete-city"></button>
   </li>`;
-  locationsList.insertAdjacentHTML('beforeend', HTMLLocationsElement);
+  constants.locationsList.insertAdjacentHTML('beforeend', HTMLLocationsElement);
 
   locations.add(res);
 
@@ -117,7 +101,10 @@ function renderAllLocations(response) {
   <a href="" class="locations-link">${elem.name}</a>
   <button class="delete-city"></button>
   </li>`;
-    locationsList.insertAdjacentHTML('beforeend', HTMLLocationsElement);
+    constants.locationsList.insertAdjacentHTML(
+      'beforeend',
+      HTMLLocationsElement
+    );
   });
 }
 
@@ -175,7 +162,7 @@ function forecastRender(response) {
   </div>
     </li>`;
 
-    forecastList.insertAdjacentHTML('afterbegin', li);
+    constants.forecastList.insertAdjacentHTML('afterbegin', li);
   }
 }
 
