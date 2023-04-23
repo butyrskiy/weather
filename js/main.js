@@ -1,10 +1,10 @@
-import * as constants from './modules/constants.js';
+import * as constants from '../modules/constants.js';
 
 import {
   switchTabs,
   getWeather,
   getTime,
-} from './modules/support_functions.js';
+} from '../modules/support_functions.js';
 
 const cityArr = [];
 
