@@ -75,13 +75,12 @@ function render(response) {
 
   setCookie('currentCity', cookieValue, {
     secure: true,
-    'max-age': 10,
+    'max-age': 3600,
   });
 }
 
 function AddLocations() {
   const res = JSON.parse(localStorage.getItem('currentCity'));
-  console.log(res);
 
   const HTMLLocationsElement = `<li class="locations-item">
   <a href="" class="locations-link">${res.name}</a>
@@ -156,7 +155,7 @@ function forecastRender(response) {
       </div>
       <div class="temperature-status">
         <span class="forecast-card weather-status">Rain</span>
-        <img src="./img/rain.svg" class="forecast-icon" alt="cloud icon">
+        <img src="img/rain.svg" class="forecast-icon" alt="cloud icon">
       </div>
     </div>
   </div>
